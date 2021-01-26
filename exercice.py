@@ -6,7 +6,7 @@ import math
 pi = math.pi
 def square_root(a: float) -> float:
     return math.sqrt(a)
-    # return a**(1/2) si on ve sous forme de puissance
+    # return a**(1/2) si on souhaite sous forme de puissance
 
 
 def square(a: float) -> float:
@@ -20,14 +20,18 @@ def average(a: float, b: float, c: float) -> float:
 
 
 def to_radians(angle_degs: float, angle_mins: float, angle_secs: float) -> float:
-    deg = angle_degs*(pi/180)
-    min = angle_mins*(pi/180)
-    sec = angle_secs*(pi/180)
-    return deg,min,sec
+    #correction prof
+    deg = angle_degs+(angle_mins/60)+(angle_secs/3600)
+    rad = math.radians(deg)
+    return rad
 
 
 def to_degrees(angle_rads: float) -> tuple:
-    return 0.0, 0.0, 0.0
+    #correction prof
+    deg = math.degrees(angle_rads) #90.706 degree
+    min = (deg-math.floor(deg))*60 #42.36 minute d'arc
+    sec = (min-math.floor(min))*60
+    return math.floor(deg), math.floor(min), sec
 
 
 def to_celsius(temperature: float) -> float:
